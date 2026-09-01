@@ -1,0 +1,22 @@
+[package]
+name = "pint-sg-validator"
+version = "0.1.0"
+edition = "2021"
+description = "Validate Peppol PINT SG (Singapore) billing invoices and credit notes against the published specification."
+license = "LicenseRef-FSL-1.1-MIT"
+repository = "https://github.com/MUST-Technology-Pte-Ltd/pint-sg-validator"
+keywords = ["peppol", "invoicenow", "e-invoice", "singapore", "gst"]
+categories = ["parsing", "finance"]
+readme = "README.md"
+
+[dependencies]
+roxmltree = "0.20"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[[bin]]
+name = "pintsg"
+path = "src/bin/pintsg.rs"
+
+[profile.release]
+strip = true
