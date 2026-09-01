@@ -2,6 +2,8 @@
 name = "pint-sg-validator"
 version = "0.1.0"
 edition = "2021"
+authors = ["MUST Technology Pte Ltd <oss@must.com.sg>"]
+homepage = "https://must.com.sg"
 description = "Validate Peppol PINT SG (Singapore) billing invoices and credit notes against the published specification."
 license = "LicenseRef-FSL-1.1-MIT"
 repository = "https://github.com/MUST-Technology-Pte-Ltd/pint-sg-validator"
