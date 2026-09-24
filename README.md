@@ -7,17 +7,20 @@ Rust; usable as a library or a single-binary CLI.
 ```
 $ pintsg invoice.xml
 ✓ conforms — no findings
+
 PASS — 0 error(s), 0 warning(s)
 
 $ pintsg broken.xml
 ERROR   [PINT-SG-01] CustomizationID is 'urn:peppol:pint:billing-1@aus-1', expected 'urn:peppol:pint:billing-1@sg-1' for PINT SG billing
 ERROR   [EN16931-CO-15] TaxInclusiveAmount (119.00) != TaxExclusiveAmount (100.00) + TaxTotal (9.00) = 109.00
+
 FAIL — 2 error(s), 0 warning(s)
 ```
 
 Exit code is `0` when the document conforms and `1` when it does not, so it
-drops into a CI pipeline or a pre-send gate unchanged. `--json` emits a
-machine-readable report.
+drops into a CI pipeline or a pre-send gate unchanged (`2` means a usage error
+or an unreadable file). `--json` emits a machine-readable report:
+`pintsg --json invoice.xml`.
 
 ## Why this exists
 
@@ -70,9 +73,22 @@ if !report.conforms {
 
 ## Install / build
 
+Not published on crates.io. Either download a prebuilt binary
+(`pintsg-linux-x86_64`, `pintsg-windows-x86_64.exe`, `pintsg-macos-arm64`) from
+[GitHub Releases](https://github.com/MUST-Technology-Pte-Ltd/pint-sg-validator/releases),
+or build from source:
+
 ```bash
-cargo build --release   # binary at target/release/pintsg
+cargo install --path .  # installs `pintsg` into ~/.cargo/bin
+cargo build --release   # or: binary at target/release/pintsg (pintsg.exe on Windows)
 cargo test              # the rule suite
+```
+
+To use it as a library, depend on the Git repository:
+
+```toml
+[dependencies]
+pint-sg-validator = { git = "https://github.com/MUST-Technology-Pte-Ltd/pint-sg-validator" }
 ```
 
 ## Contributing
