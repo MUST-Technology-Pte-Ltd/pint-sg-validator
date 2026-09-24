@@ -15,7 +15,8 @@ use pint_sg_validator::{validate, Severity};
 fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let json = args.iter().any(|a| a == "--json");
-    let path = args.iter().find(|a| !a.starts_with('-'));
+    // "-" is the stdin marker, not a flag.
+    let path = args.iter().find(|a| *a == "-" || !a.starts_with('-'));
 
     let xml = match path.map(String::as_str) {
         None => {
