@@ -1,0 +1,2 @@
+# Fixtures are byte-compared in tests; keep LF on every checkout.
+tests/fixtures/*.xml text eol=lf
